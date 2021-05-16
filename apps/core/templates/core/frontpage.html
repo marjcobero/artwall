@@ -1,0 +1,14 @@
+{% extends 'core/index.html' %}
+
+{% block title %}Welcome Art Lovers! | {% endblock %}
+
+{% block content %}
+    <div class="columns is-multiline mb-6">
+        <div class="column is-12 has-text-centered mt-6 mb-6">
+            <h2 class="is-size-3">Buy Artwork(s) From Artist Across The Globe</h2>
+        </div>
+        {% for artwork in newest_artworks %}
+            {% include 'artwork/extension/list_item.html' %}
+        {% endfor %}
+    </div>
+{% endblock %}

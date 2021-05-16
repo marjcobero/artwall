@@ -1,0 +1,85 @@
+{% extends 'core/index.html' %}
+
+{% block title %} Artist Admin | {% endblock %}
+
+{% block content %}
+    <div class="box">
+        <h1 class="title">Artist Admin - {{ artist.name }}</h1>
+        <strong>My balance: </strong>${{ artist.get_balance }}<br>
+        <strong>My paid amount: </strong>${{ artist.get_paid_amount }}
+        <hr>
+        <a href="{% url 'edit_profile' %}" class="button is-info is-uppercase">Edit</a>
+        <a href="{% url 'logout' %}" class="button is-danger is-uppercase">Log out</a>
+    </div>
+    <div class="box">
+        <h2 class="is-size-3 mb-4">My Artworks</h2>
+        <a href="{% url 'add_artwork' %}" class="button is-dark is-uppercase mb-6">Add Artwork</a>
+        {% if artworks %}
+            <table class="table is-fullwidth">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for artwork in artworks %}
+                        <tr>
+                            <td><a href="{% url 'artwork' artwork.category.slug artwork.slug %}">{{ artwork.title }}</a></td>
+                            <td>${{ artwork.price }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% else %}
+            <p>No Artworks found..</p>
+        {% endif %}
+    </div>
+    <div class="box">
+        <h2 class="is-size-3 mb-4">My Orders</h2>
+        {% if orders %}
+            {% for order in orders %}
+                <div class="{% if order.fully_paid %}has-background-success-light{% else %}has-background-info-light{% endif %} mb-2 p-4">
+                    <div class="columns is-multiline">
+                        <div class="column is-6">
+                            <h3 class="is-size-4">#{{ order.id }} - {{ order.first_name }} {{ order.last_name }}</h3>
+                        </div>
+                        <div class="column is-12">
+                            <b>Name:</b> {{ order.first_name }} {{ order.last_name }}<br>
+                            <b>Address:</b> {{ order.address }}<br>
+                            <b>City:</b> {{ order.city }}<br>
+                            <b>Zipcode:</b> {{ order.zipcode }}<br>
+                            <b>State:</b> {{ order.state }}<br>
+                            <b>E-mail:</b> {{ order.email }}<br>
+                            <b>Phone:</b> {{ order.phone }}
+                            <table class="table is-fullwidth mt-4">
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th>Price</th>
+                                        <th>Quantity</th>
+                                        <th>Paid</th>
+                                        <th>Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for item in order.items.all %}
+                                        {% if item.artist == request.user.artist %}
+                                            <tr>
+                                                <td>{{ item.artist.title }}</td>
+                                                <td>${{ item.artist.price }}</td>
+                                                <td>{{ item.quantity }}</td>
+                                                <td>{{ item.artist_paid|yesno:"Yes,No" }}</td>
+                                                <td>${{ item.get_total_price }}</td>
+                                            </tr>
+                                        {% endif %}
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
+{% endblock %}

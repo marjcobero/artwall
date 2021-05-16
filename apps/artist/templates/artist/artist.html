@@ -1,0 +1,14 @@
+{% extends 'core/index.html' %}
+
+{% block title %}{{ artist.name }} | {% endblock %}
+
+{% block content %}
+    <div class="columns is-multiline mb-6">
+        <div class="column is-12 has-text-centered mt-6 mb-6">
+            <h2 class="is-size-3">{{ artist.name }}</h2>
+        </div>
+        {% for artwork in artist.artworks.all %}
+            {% include 'artwork/extension/list_item.html' %}
+        {% endfor %}
+    </div>
+{% endblock %}

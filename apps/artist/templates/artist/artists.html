@@ -1,0 +1,18 @@
+{% extends 'core/index.html' %}
+
+{% block title %}Artists | {% endblock %}
+
+{% block content %}
+    <h1 class="title">Artists</h1>
+    <div class="columns is-multiline">
+        {% for artist in artists %}
+            <div class="column is-3">
+                <div class="box">
+                    <h2 class="subtitle">{{ artist.name }}</h2>
+                    <hr>
+                    <a href="{% url 'artist' artist.id %}" class="button is-dark is-uppercase">View</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
