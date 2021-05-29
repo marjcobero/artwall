@@ -3,8 +3,14 @@
 An E-commerce platform inspired by Etsy that enables users (merchants/artists) to manage a business account to market and sell products. The backend is built with Python in the Django framework, and its design has been made responsive through the use of a new CSS framework BULMA and Javascript.
 
 # Features
-* 
-* 
+* User registration and login with validations
+* Admin tool for artists to manage their artworks and prices
+* Implemented a responsive-design with Bulma to enhance cross-platform user
+* Keyword searching
+* Checkout withh validations
+
+#Author 
+Marjorie Cobero: https://github.com/mcobero
 
 # Demo 
 ![artwall1](https://user-images.githubusercontent.com/69501884/118935087-fca86e00-b8ff-11eb-9ce2-c651a1f173eb.gif)
