@@ -4,10 +4,13 @@ An E-commerce platform inspired by Etsy that enables users (merchants/artists) t
 
 # Features
 * User registration and login with validations
-* Admin tool for artists to manage their artworks and prices
+* Admin tool for artists to manage their artworks, prices and orders
+* A profile edit tool to change their name display on the live site from a username to the artist's pen name
 * Implemented a responsive-design with Bulma to enhance cross-platform user
 * Keyword searching
-* Checkout withh validations
+* Checkout with validations
+* A card display theme on their artworks for a better display to the buyers
+* The option to Add/Subtract the quantity in the cart page
 
 #Author 
 Marjorie Cobero: https://github.com/mcobero
